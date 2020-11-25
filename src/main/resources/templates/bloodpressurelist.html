@@ -1,0 +1,50 @@
+<!Doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" 
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+	
+<head>
+	<title>Blood Pressure List</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" 
+		th:href="@{/css/bootstrap.min.css}" />
+</head>
+
+<body>
+	<div>
+		<div>
+			<h1>Blood Pressure Tracker</h1>
+		</div>
+		
+		<div>
+			<h3 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h3>
+		</div>
+		
+		<a href="/add" class="btn btn-primary">Add New</a>
+		
+		<table class="table table-striped">
+			<tr>
+				<th>Systolic</th>
+				<th>Diastolic</th>
+				<th>Pulse</th>
+				<th></th>
+				<th></th>
+			</tr>
+			
+			<tr th:each="bloodpressure : ${bloodpressure}">
+				<td th:text="${bloodpressure.systolic}"></td>
+				<td th:text="${bloodpressure.diastolic}"></td>
+				<td th:text="${bloodpressure.pulse}"></td>
+				<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${bloodpressure.id})}" class="btn btn-danger">Delete</a></td>
+			<td><a th:href="@{/edit/{id}(id=${bloodpressure.id})}" class="btn btn-warning">Edit</a></td>
+			</tr>
+		</table>
+		
+		<div>
+			<form th:action="@{/logout}" method="post">
+				<input type="submit" value="Sign Out" class="btn btn-sm btn-danger" />
+			</form>
+		</div>
+	</div>
+</body>
+	
+</html>
