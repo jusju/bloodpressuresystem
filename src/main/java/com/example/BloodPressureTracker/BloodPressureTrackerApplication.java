@@ -33,7 +33,7 @@ public class BloodPressureTrackerApplication {
 			repository.save(new BloodPressure(118, 93, 75));
 			repository.save(new BloodPressure(140, 90, 63));
 			
-			// Test users user1(user), user2(admin)
+			// Test users user(user), admin(admin)
 			User user1 = new User("user", "$2a$06$2FtjqzBuNoPOdVDmN.mep.1PeP8QZnKtk8FQGIvOVKqrO4M0nS2QC", "USER");
 			User user2 = new User("admin", "$2a$06$RsWjb6Vvl5oI/7RvrnxfJuDxGC2aTF83UFypj5raWqBbKyAuSAhJ2", "ADMIN");
 			urepository.save(user1);
