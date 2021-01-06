@@ -53,7 +53,6 @@ public class BloodPressureController {
 	}
 	
 	// Delete entry
-	@PreAuthorize("hasAuthority('ADMIN')")
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
 	public String deleteBloodPressure(@PathVariable("id") Long bloodPressureId, Model model) {
 		repository.deleteById(bloodPressureId);
