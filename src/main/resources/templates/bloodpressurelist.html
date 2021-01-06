@@ -23,6 +23,7 @@
 		
 		<table class="table table-striped">
 			<tr>
+				<th>Date</th>			
 				<th>Systolic</th>
 				<th>Diastolic</th>
 				<th>Pulse</th>
@@ -31,6 +32,7 @@
 			</tr>
 			
 			<tr th:each="bloodpressure : ${bloodpressure}">
+				<td th:text="${bloodpressure.datethis}"></td>				
 				<td th:text="${bloodpressure.systolic}"></td>
 				<td th:text="${bloodpressure.diastolic}"></td>
 				<td th:text="${bloodpressure.pulse}"></td>

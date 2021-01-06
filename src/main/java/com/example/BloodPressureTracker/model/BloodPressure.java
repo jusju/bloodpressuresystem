@@ -10,6 +10,7 @@ public class BloodPressure {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	private String datethis;
 	private int systolic;
 	private int diastolic;
 	private int pulse;
@@ -18,8 +19,9 @@ public class BloodPressure {
 		super();
 	}
 
-	public BloodPressure(int systolic, int diastolic, int pulse) {
+	public BloodPressure(String datethis, int systolic, int diastolic, int pulse) {
 		super();
+		this.datethis = datethis;
 		this.systolic = systolic;
 		this.diastolic = diastolic;
 		this.pulse = pulse;
@@ -31,6 +33,14 @@ public class BloodPressure {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getDatethis() {
+		return datethis;
+	}
+
+	public void setDatethis(String datethis) {
+		this.datethis = datethis;
 	}
 
 	public int getSystolic() {
@@ -56,5 +66,13 @@ public class BloodPressure {
 	public void setPulse(int pulse) {
 		this.pulse = pulse;
 	}
+
+	@Override
+	public String toString() {
+		return "BloodPressure [id=" + id + ", datethis=" + datethis + ", systolic=" + systolic + ", diastolic="
+				+ diastolic + ", pulse=" + pulse + "]";
+	}
+
+	
 
 }

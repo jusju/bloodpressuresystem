@@ -12,6 +12,8 @@
 	<div>
 		<form th:object="${bloodpressure}" th:action="@{save}" action="#" 
 			method="post">
+			<label for="systolic">Date</label>
+			<input type="text" id="datethis" th:field="*{datethis}" />
 			<label for="systolic">Systolic</label>
 			<input type="text" id="systolic" th:field="*{systolic}" />
 			<label for="diastolic">Diastolic</label>

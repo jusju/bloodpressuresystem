@@ -15,13 +15,5 @@ import com.example.BloodPressureTracker.model.UserRepository;
 @DataJpaTest
 public class UserRepositoryTest {
 	
-	@Autowired
-	private UserRepository urepository;
 
-	@Test
-	public void CreateNewUser() {
-		User user = new User("user name", "$2a$06$vRN/vQ4VW8p.L51PNJYvte0OOI51nXx/QSQHhHY0SCEwdLIuj89v6", "USER");
-		urepository.save(user);
-		assertThat(user.getId()).isNotNull();
-	}
 }
