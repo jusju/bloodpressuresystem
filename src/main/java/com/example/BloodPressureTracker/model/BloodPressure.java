@@ -4,35 +4,44 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 
 @Entity
 public class BloodPressure {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	private Long bloodpressureid;
 	private String datethis;
 	private int systolic;
 	private int diastolic;
 	private int pulse;
+	
+    @ManyToOne
+    @JoinColumn(name = "id")
+	private User user;
 
 	public BloodPressure() {
-		super();
 	}
 
-	public BloodPressure(String datethis, int systolic, int diastolic, int pulse) {
+	public BloodPressure(String datethis, int systolic, int diastolic, int pulse, User user) {
 		super();
 		this.datethis = datethis;
 		this.systolic = systolic;
 		this.diastolic = diastolic;
 		this.pulse = pulse;
+		this.user = user;
 	}
 
-	public Long getId() {
-		return id;
+
+
+	public Long getBloodpressureid() {
+		return bloodpressureid;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setBloodpressureid(Long bloodpressureid) {
+		this.bloodpressureid = bloodpressureid;
 	}
 
 	public String getDatethis() {
@@ -66,13 +75,21 @@ public class BloodPressure {
 	public void setPulse(int pulse) {
 		this.pulse = pulse;
 	}
+	
+	
+	
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	@Override
 	public String toString() {
-		return "BloodPressure [id=" + id + ", datethis=" + datethis + ", systolic=" + systolic + ", diastolic="
-				+ diastolic + ", pulse=" + pulse + "]";
+		return "BloodPressure [bloodpressureid=" + bloodpressureid + ", datethis=" + datethis + ", systolic=" + systolic
+				+ ", diastolic=" + diastolic + ", pulse=" + pulse + ", user=" + user + "]";
 	}
-
-	
-
 }

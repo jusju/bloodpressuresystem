@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.BloodPressureTracker.model.BloodPressure;
 import com.example.BloodPressureTracker.model.BloodPressureRepository;
+import com.example.BloodPressureTracker.model.User;
 
 @Controller
 public class BloodPressureController {
@@ -28,6 +30,10 @@ public class BloodPressureController {
 	// Show all blood pressure entries
 	@RequestMapping(value={"/", "/bloodpressurelist"})
 	public String bloodPressureList(Model model) {
+		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		System.out.println("JUKKA START");
+		System.out.println(user);
+		System.out.println("JUKKA END");
 		model.addAttribute("bloodpressure", repository.findAll());
 		return "bloodpressurelist";
 	}

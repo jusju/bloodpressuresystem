@@ -1,6 +1,9 @@
 package com.example.BloodPressureTracker.model;
 
+import java.util.List;
+
 import javax.persistence.*;
+
 
 @Entity
 @Table(name = "usertable")
@@ -20,11 +23,11 @@ public class User {
 	@Column(name = "role", nullable = false)
 	private String role;
 
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+	private List<BloodPressure> bloodpressures;
+	
 	public User() {
-		super();
 	}
-
-
 
 	public User(String username, String passwordHash, String role) {
 		super();
@@ -32,8 +35,6 @@ public class User {
 		this.passwordHash = passwordHash;
 		this.role = role;
 	}
-
-
 
 	public Long getId() {
 		return id;
@@ -58,13 +59,24 @@ public class User {
 	public void setPasswordHash(String passwordHash) {
 		this.passwordHash = passwordHash;
 	}
-	
+
 	public String getRole() {
 		return role;
 	}
-	
+
 	public void setRole(String role) {
 		this.role = role;
 	}
+
+	public List<BloodPressure> getBloodpressures() {
+		return bloodpressures;
+	}
+
+	public void setBloodpressures(List<BloodPressure> bloodpressures) {
+		this.bloodpressures = bloodpressures;
+	}
+
+
+
 
 }

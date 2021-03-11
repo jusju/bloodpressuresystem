@@ -7,5 +7,6 @@ import org.springframework.data.repository.CrudRepository;
 public interface BloodPressureRepository extends CrudRepository<BloodPressure, Long> {
 
 	List<BloodPressure> findBySystolic(int systolic);
+	List<BloodPressure> findByUser(User user);
 
 }
