@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,11 +16,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.BloodPressureTracker.model.BloodPressure;
 import com.example.BloodPressureTracker.model.BloodPressureRepository;
 import com.example.BloodPressureTracker.model.User;
+import com.example.BloodPressureTracker.model.UserRepository;
 
 @Controller
 public class BloodPressureController {
 	@Autowired
 	private BloodPressureRepository repository;
+
+	@Autowired
+	private UserRepository urepository;
 	
 	// Show all blood pressure entries
 	@RequestMapping(value="/login")
@@ -30,11 +35,14 @@ public class BloodPressureController {
 	// Show all blood pressure entries
 	@RequestMapping(value={"/", "/bloodpressurelist"})
 	public String bloodPressureList(Model model) {
-		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		
+        UserDetails user = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = user.getUsername();
+        User userNow = urepository.findByUsername(username);
 		System.out.println("JUKKA START");
 		System.out.println(user);
 		System.out.println("JUKKA END");
-		model.addAttribute("bloodpressure", repository.findAll());
+		model.addAttribute("bloodpressure", repository.findByUser(userNow));
 		return "bloodpressurelist";
 	}
 	
