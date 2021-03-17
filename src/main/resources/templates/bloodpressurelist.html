@@ -36,8 +36,8 @@
 				<td th:text="${bloodpressure.systolic}"></td>
 				<td th:text="${bloodpressure.diastolic}"></td>
 				<td th:text="${bloodpressure.pulse}"></td>
-				<td><a th:href="@{/delete/{id}(id=${bloodpressure.id})}" class="btn btn-danger">Delete</a></td>
-			<td><a th:href="@{/edit/{id}(id=${bloodpressure.id})}" class="btn btn-warning">Edit</a></td>
+				<td><a th:href="@{/delete/{id}(id=${bloodpressure.bloodpressureid})}" class="btn btn-danger">Delete</a></td>
+			<td><a th:href="@{/edit/{id}(id=${bloodpressure.bloodpressureid})}" class="btn btn-warning">Edit</a></td>
 			</tr>
 		</table>
 		
